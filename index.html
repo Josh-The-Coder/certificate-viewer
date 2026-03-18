@@ -46,6 +46,7 @@
 
     .viewer-wrap {
       height: calc(100vh - 96px);
+      position: relative;
     }
 
     .viewer {
@@ -53,6 +54,27 @@
       height: 100%;
       border: 0;
       display: block;
+    }
+
+    .toc-button {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 9999;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #0b1220;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .toc-button:hover {
+      background: #132238;
     }
   </style>
 </head>
@@ -68,9 +90,25 @@
 
   <div class="viewer-wrap">
     <iframe
+      id="pdfViewer"
       class="viewer"
       src="./web/viewer.html?file=../certificate-portfolio.pdf#page=1&zoom=auto&pagemode=none">
     </iframe>
   </div>
+
+  <button class="toc-button" onclick="goToTOC()">Back to Table of Contents</button>
+
+  <script>
+    function goToTOC() {
+      const viewer = document.getElementById("pdfViewer");
+      const targetHash = "#page=2&zoom=auto&pagemode=none";
+
+      try {
+        viewer.contentWindow.location.hash = targetHash;
+      } catch (e) {
+        viewer.src = "./web/viewer.html?file=../certificate-portfolio.pdf" + targetHash;
+      }
+    }
+  </script>
 </body>
 </html>
