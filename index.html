@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificate Portfolio</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #0f172a;
+      font-family: Arial, sans-serif;
+    }
+
+    .topbar {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      color: white;
+      background: #0b1220;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-sizing: border-box;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .note {
+      font-size: 13px;
+      opacity: 0.82;
+    }
+
+    .viewer-wrap {
+      height: calc(100vh - 56px);
+    }
+
+    .viewer {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="title">Certificate Portfolio</div>
+    <div class="note">View-only portfolio</div>
+  </div>
+
+  <div class="viewer-wrap">
+    <iframe
+      class="viewer"
+      src="./web/viewer.html?file=../certificate-portfolio.pdf#page=1&zoom=page-width&pagemode=none">
+    </iframe>
+  </div>
+</body>
+</html>
