@@ -56,13 +56,12 @@
       display: block;
     }
 
-    .toc-button {
+    .toc-button,
+    .return-button {
       position: fixed;
-      left: 18px;
       bottom: 18px;
       z-index: 9999;
       padding: 10px 14px;
-      border: 0;
       border-radius: 10px;
       background: #0b1220;
       color: white;
@@ -71,9 +70,20 @@
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0,0,0,0.28);
       border: 1px solid rgba(255,255,255,0.12);
+      text-decoration: none;
+      font-family: Arial, sans-serif;
     }
 
-    .toc-button:hover {
+    .toc-button {
+      left: 18px;
+    }
+
+    .return-button {
+      right: 18px;
+    }
+
+    .toc-button:hover,
+    .return-button:hover {
       background: #132238;
     }
   </style>
@@ -98,24 +108,30 @@
 
   <button class="toc-button" type="button" onclick="goToTOC()">Back to Table of Contents</button>
 
+  <a id="returnButton" class="return-button" href="https://structuredops.com/" target="_self">
+    Return to Portfolio
+  </a>
+
   <script>
-    const tocUrl = "./web/viewer.html?file=../certificate-portfolio.pdf#page=2&zoom=auto&pagemode=none";
+    const viewerBase = "./web/viewer.html?file=../certificate-portfolio.pdf";
+    const allowedReturnUrls = [
+      "https://structuredops.com/#certifications",
+      "https://structuredops.com/executive-support/#clt-12-certifications"
+    ];
 
     function goToTOC() {
       const viewer = document.getElementById("pdfViewer");
+      viewer.src = `${viewerBase}&nav=${Date.now()}#page=2&zoom=auto&pagemode=none`;
+    }
 
-      try {
-        const currentUrl = viewer.contentWindow.location.href;
-        const isOnTOC = /#page=2(?:&|$)/.test(currentUrl);
+    const params = new URLSearchParams(window.location.search);
+    const returnUrl = params.get("return");
+    const returnButton = document.getElementById("returnButton");
 
-        if (isOnTOC) {
-          viewer.contentWindow.location.reload();
-        } else {
-          viewer.contentWindow.location.replace(tocUrl);
-        }
-      } catch (error) {
-        viewer.src = tocUrl;
-      }
+    if (allowedReturnUrls.includes(returnUrl)) {
+      returnButton.href = returnUrl;
+    } else {
+      returnButton.href = "https://structuredops.com/";
     }
   </script>
 </body>
