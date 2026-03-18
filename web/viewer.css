@@ -8718,3 +8718,16 @@ dialog :link{
 #secondaryDownload {
   display: none !important;
 }
+
+/* Hide extra viewer controls for a cleaner portfolio experience */
+#zoomOutButton,
+#zoomInButton,
+#scaleSelectContainer,
+#editorHighlight,
+#editorFreeText,
+#editorInk,
+#editorStamp,
+#editorModeSeparator,
+#secondaryToolbarToggle {
+  display: none !important;
+}
