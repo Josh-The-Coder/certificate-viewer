@@ -99,9 +99,23 @@
   <button class="toc-button" type="button" onclick="goToTOC()">Back to Table of Contents</button>
 
   <script>
+    const tocUrl = "./web/viewer.html?file=../certificate-portfolio.pdf#page=2&zoom=auto&pagemode=none";
+
     function goToTOC() {
       const viewer = document.getElementById("pdfViewer");
-      viewer.src = "./web/viewer.html?file=../certificate-portfolio.pdf#page=2&zoom=auto&pagemode=none";
+
+      try {
+        const currentUrl = viewer.contentWindow.location.href;
+        const isOnTOC = /#page=2(?:&|$)/.test(currentUrl);
+
+        if (isOnTOC) {
+          viewer.contentWindow.location.reload();
+        } else {
+          viewer.contentWindow.location.replace(tocUrl);
+        }
+      } catch (error) {
+        viewer.src = tocUrl;
+      }
     }
   </script>
 </body>
