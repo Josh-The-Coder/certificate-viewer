@@ -96,18 +96,12 @@
     </iframe>
   </div>
 
-  <button class="toc-button" onclick="goToTOC()">Back to Table of Contents</button>
+  <button class="toc-button" type="button" onclick="goToTOC()">Back to Table of Contents</button>
 
   <script>
     function goToTOC() {
       const viewer = document.getElementById("pdfViewer");
-      const targetHash = "#page=2&zoom=auto&pagemode=none";
-
-      try {
-        viewer.contentWindow.location.hash = targetHash;
-      } catch (e) {
-        viewer.src = "./web/viewer.html?file=../certificate-portfolio.pdf" + targetHash;
-      }
+      viewer.src = "./web/viewer.html?file=../certificate-portfolio.pdf#page=2&zoom=auto&pagemode=none";
     }
   </script>
 </body>
