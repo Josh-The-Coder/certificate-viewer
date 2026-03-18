@@ -8710,3 +8710,11 @@ dialog :link{
     display:none;
   }
 }
+
+/* Hide visible print/download controls */
+#printButton,
+#downloadButton,
+#secondaryPrint,
+#secondaryDownload {
+  display: none !important;
+}
